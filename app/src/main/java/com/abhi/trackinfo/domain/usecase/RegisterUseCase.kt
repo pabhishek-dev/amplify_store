@@ -1,0 +1,36 @@
+package com.abhi.trackinfo.domain.usecase
+
+import com.abhi.trackinfo.domain.model.User
+import com.abhi.trackinfo.domain.repository.AuthRepository
+import com.abhi.trackinfo.domain.usecase.util.EmailValidator
+import com.abhi.trackinfo.domain.usecase.util.PasswordValidator
+import com.abhi.trackinfo.domain.usecase.util.ValidationMessages.EMAIL_VALIDATION_MSG
+import com.abhi.trackinfo.domain.usecase.util.ValidationMessages.PASSWORD_VALIDATION_MSG
+
+import com.abhi.trackinfo.domain.usecase.util.Result
+
+class RegisterUseCase(
+    private val authRepository: AuthRepository,
+    private val emailValidator: EmailValidator,
+    private val passwordValidator: PasswordValidator
+) {
+
+    suspend operator fun invoke(
+        email: String,
+        password: String
+    ): Result<User> {
+        if (!emailValidator.isValidEmail(email)) {
+            return Result.Error(EMAIL_VALIDATION_MSG)
+        }
+        if (!passwordValidator.isPasswordValid(password)) {
+            return Result.Error(PASSWORD_VALIDATION_MSG)
+        }
+
+        return try {
+            val user = authRepository.register(email, password)
+            Result.Success(user)
+        } catch (e: Exception) {
+            Result.Error(e.message ?: "Registration failed")
+        }
+    }
+}

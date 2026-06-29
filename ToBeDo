@@ -1,0 +1,39 @@
+Clearly incomplete or pending (in code today)
+Area	What’s going on
+Settings
+SettingsScreen / Settings in settings.kt are empty (no UI, no navigation hooks beyond the route).
+Home loading / errors
+HomeScreen branches for isLoading and errorMessage are empty — no placeholder, spinner, or retry.
+Product details
+Minimal layout (text only); Result.Error branch is empty; LaunchedEffect(Unit) + id ?: 1 is a fragile default if productId is bad.
+Favourites tab
+No empty state; onFavouriteClick still no-op in FavouriteScreen — remove-from-favourites from that screen not wired.
+FavouriteViewModel
+_internalLoadingState is never flipped; combine + loading is effectively unused unless you wire it.
+Bottom bar — Settings
+Selection updates but no navigate(Routes.SETTINGS) (unlike Home / Favourites / Profile).
+SSL demo
+testSSL() exists on AuthenticationViewModel but is not called from the auth UI (only logs if you invoked it somewhere else — it isn’t in main sources).
+Test composable
+Dev/playground with lots of commented Scaffold/NavHost; uses rememberNavController() inside a screen that’s already inside app NavHost — fine for experiments, not a finished feature.
+Assets / backups
+data_extraction_rules.xml still has Android’s TODO for backup include/exclude.
+Dead / noisy
+e.g. Home.kt unused FavouriteViewModel import; settings.kt odd unused import (Continuation); MI_FAB context unused.
+Feature ideas that fit the app (not built yet)
+These match what you already have (products, SSE, favourites, profile-ish shell):
+
+Cart / checkout or saved lists beyond favourites.
+Search & filters on the product grid.
+Sort (price, rating, stock).
+Product detail polish: image, rating widget, favourite toggle, share, related items.
+Account: real session, sign-out, “current user” on profile (today login is local DB only).
+Settings content: theme, notifications, cache clear, about, SSL/diagnostics toggle if you keep the pinning demo.
+Offline / sync: explicit “last updated”, pull-to-refresh, reconnect for SSE.
+Accessibility & content descriptions pass on icons and lists.
+Proper error UX everywhere (network, SSE, Room).
+Tests (ViewModels, DAO, navigation) — only example tests exist today.
+“Mentioned in comments but not delivered”
+HomeApiService: “Stream of data coming…” — SSE is implemented elsewhere; comment is leftover.
+Favourite.kt: window size / responsive branches are commented out.
+Profile: rows like “My Vouchers”, “Rewards” look like a template; many may not navigate anywhere yet (worth verifying each row’s clickable behavior if you care).

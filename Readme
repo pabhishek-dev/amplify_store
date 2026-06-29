@@ -1,0 +1,50 @@
+
+About the project
+
+Where di sits in the architecture
+
+di (wiring layer) — can import from everything
+  ├── data       ✅  (DB_NAME, AppDatabase, UserDao, AuthRepositoryImpl)
+  ├── domain     ✅  (AuthRepository, LoginUseCase, RegisterUseCase)
+  └── presentation ✅ (EmailValidator, PasswordValidator)
+
+///// Atomic Architecture /////
+
+
+Basic Idea of Atomic Architecture
+
+The UI is built like chemistry:
+
+|── Atoms → Molecules → Organisms → Templates → Pages ──|
+
+Each level combines smaller components.
+
+ui/
+ ├── atoms/
+ │    ├── AppButton.kt
+ │    ├── AppText.kt
+ │
+ ├── molecules/
+ │    ├── SearchBar.kt
+ │    ├── InputField.kt
+ │
+ ├── organisms/
+ │    ├── ProductCard.kt
+ │    ├── ProfileHeader.kt
+ │
+ ├── templates/
+ │    ├── HomeTemplate.kt
+ │
+ └── pages/
+      ├── HomeScreen.kt
+      ├── ProfileScreen.kt
+
+
+Effects :
+
+Launched Effect : Runs when composable enters composition AND restarts when key changes
+
+Side Effect : Runs after every recomposition to sync state with outside world
+
+Disposable Effect : Starts when composable enters composition and disposes when it leaves or key changes
+
