@@ -7,9 +7,15 @@ import android.os.IBinder
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.abhi.trackinfo.presentation.utils.components.main.Main
+import androidx.navigation.compose.rememberNavController
+import com.abhi.trackinfo.presentation.home.Home
+import com.abhi.trackinfo.presentation.utils.navigation.AppNavGraph
 import com.abhi.trackinfo.presentation.utils.network_handler.NetworkStateHandler
 import com.abhi.trackinfo.presentation.utils.network_handler.NetworkStateListener
 import com.abhi.trackinfo.services.regular.MyService
@@ -41,15 +47,28 @@ class MainActivity : ComponentActivity(), NetworkStateListener by NetworkStateHa
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Main()
+            MainApp()
         }
         observeNetworkState(this, this)
     }
+}
 
+@Composable
+fun MainApp() {
+    val rootNavController = rememberNavController()
+    val snackBarHostState = remember { SnackbarHostState() }
+
+    // Root level navigation host
+    AppNavGraph(
+        navController = rootNavController,
+        modifier = Modifier.fillMaxSize(),
+        snackBarHostState = snackBarHostState,
+        onFABClick = { /* Handle global FAB if needed */ }
+    )
 }
 
 @Preview
 @Composable
 fun DisplayMain() {
-    Main()
+    Home()
 }

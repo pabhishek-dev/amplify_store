@@ -35,7 +35,7 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideHomeApiRepository(
-        @Qualifiers.ApiClient sseClient: OkHttpClient,
+        @Qualifiers.SSEClient sseClient: OkHttpClient,
         productDao: ProductDao,
         request: Request,
         gson: Gson

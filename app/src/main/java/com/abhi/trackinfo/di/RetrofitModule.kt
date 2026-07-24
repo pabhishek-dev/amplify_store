@@ -61,7 +61,7 @@ object RetrofitModule {
     @Singleton
     fun provideRequest(
     ): Request = Request.Builder()
-        .url("https://${API_PATH}:4443/stream")
+        .url("https://${API_PATH}:4444/stream")
         .build()
 
 

@@ -2,7 +2,7 @@ package com.abhi.trackinfo.data.util
 
 object DatabaseConstants {
     const val DB_NAME = "app_db"
-    const val API_PATH= "192.168.0.104"
+    const val API_PATH= "192.168.0.109"
 }
 
 object Url {

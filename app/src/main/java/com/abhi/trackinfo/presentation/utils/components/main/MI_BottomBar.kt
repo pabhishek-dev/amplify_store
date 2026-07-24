@@ -6,12 +6,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.abhi.trackinfo.R
 import com.abhi.trackinfo.presentation.utils.components.shared.MI_IconButton
 import com.abhi.trackinfo.presentation.utils.navigation.Route
@@ -21,23 +21,37 @@ import com.abhi.trackinfo.ui.theme.White80
 fun MI_BottomBar(
     navController: NavController
 ) {
-    var selected by remember { mutableStateOf("Home") }
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     BottomAppBar(
-        containerColor = White80, contentColor = Color.Yellow
+        containerColor = White80,
+        contentColor = Color.Yellow
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             bottomTabs.forEach { tab ->
+
+                val isSelected = currentDestination?.hasRoute(tab.route::class) == true
+
                 MI_IconButton(
                     moduleName = tab.id,
                     icon = tab.icon,
                     label = tab.id,
-                    isSelected = selected == tab.id
+                    isSelected = isSelected
                 ) {
-                    selected = tab.id
-                    tab.route.let { navController.navigate(it) }
+
+                    navController.navigate(tab.route){
+                        popUpTo(navController.graph.findStartDestination().id){
+                            saveState = true
+                        }
+
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             }
         }

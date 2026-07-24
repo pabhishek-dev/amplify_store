@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -16,7 +15,6 @@ import com.abhi.trackinfo.presentation.authentication.util.AuthUiEvent
 
 @Composable
 fun Authentication(
-    modifier: Modifier = Modifier,
     viewModel: AuthenticationViewModel = hiltViewModel(),
     onAuthSuccess: () -> Unit = {},
     snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
@@ -35,7 +33,6 @@ fun Authentication(
                     focusManager.clearFocus()
                     email = ""
                     password = ""
-
                     snackBarHostState.showSnackbar("Welcome back, ${event.user.email}")
                     onAuthSuccess()
                 }
