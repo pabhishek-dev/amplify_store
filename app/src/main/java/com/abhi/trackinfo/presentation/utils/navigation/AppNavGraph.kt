@@ -54,7 +54,7 @@ fun AppNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Route.AuthGraph,
+        startDestination = Route.MainGraph,
         modifier = modifier,
         enterTransition = { fadeIn(animationSpec = tween(250)) },
         exitTransition = { fadeOut(animationSpec = tween(250)) },
@@ -102,12 +102,7 @@ private fun NavGraphBuilder.mainGraph(
 ) {
     navigation<Route.MainGraph>(startDestination = Route.Home) {
         composable<Route.Home> {
-            Home(
-                snackBarHostState = snackBarHostState,
-                onFABClick = {onFABClick},
-                navController = navController,
-                modifier = modifier
-            )
+            Home(navController = navController)
         }
         composable<Route.Profile>   { ProfileScreen(onNavClick = navController::popBackStack) }
         composable<Route.Settings>  { SettingsScreen(navController = navController) }
@@ -115,7 +110,9 @@ private fun NavGraphBuilder.mainGraph(
         composable<Route.Test>      { Test() }
         composable<Route.ProductDetails> { entry ->
             val args = entry.toRoute<Route.ProductDetails>()
-            ProductDetails(productId = args.productId)
+            ProductDetails(
+                productId = args.productId,
+                onBackClick = {navController.popBackStack()})
            }
     }
 }

@@ -1,6 +1,5 @@
 package com.abhi.trackinfo.data.repository
 
-import android.util.Log
 import com.abhi.trackinfo.data.local.dao.ProductDao
 import com.abhi.trackinfo.data.local.entities.toDomainProduct
 import com.abhi.trackinfo.data.model.SSEEvent
@@ -23,6 +22,7 @@ import okhttp3.Response
 import okhttp3.sse.EventSource
 import okhttp3.sse.EventSourceListener
 import okhttp3.sse.EventSources
+import timber.log.Timber
 
 class HomeRepositoryImpl(
     @param:Qualifiers.SSEClient
@@ -57,7 +57,21 @@ class HomeRepositoryImpl(
                         t: Throwable?,
                         response: Response?
                     ) {
-                        close(t ?: Exception("SSE connection failed"))
+                        val message = buildString {
+                            append("SSE connection failed")
+                            response?.let {
+                                append(": HTTP ")
+                                append(it.code)
+                                append(" ")
+                                append(it.message)
+                                append(", contentType=")
+                                append(it.header("Content-Type"))
+                                append(", body=")
+                                append(it.peekBody(256).string())
+                            }
+                        }
+                        Timber.tag(LOGS).e(t)
+                        close(t ?: Exception(message))
                     }
 
                     override fun onClosed(eventSource: EventSource) {
@@ -75,7 +89,7 @@ class HomeRepositoryImpl(
 
             "delete" -> sseEvent.product?.let {
                 productDao.deleteProduct(it.id)
-            } ?: Log.w(LOGS, "Product id not found")
+            } ?: Timber.tag(LOGS).w("Product id not found")
 
             "delete_all" -> productDao.deleteAllProduct()
 
