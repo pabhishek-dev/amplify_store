@@ -15,7 +15,7 @@
 
     <application
         android:name=".MyApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -50,7 +50,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="trackinfo" android:host="dashboard" />
+                <data android:scheme="amplify_store" android:host="dashboard" />
             </intent-filter>
 
             <intent-filter android:autoVerify="true">
@@ -60,7 +60,7 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-                <data android:host="www.trackinfo.com" />
+                <data android:host="www.amplify_store.com" />
             </intent-filter>
 
         </activity>

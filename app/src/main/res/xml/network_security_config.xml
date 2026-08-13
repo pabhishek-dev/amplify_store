@@ -16,4 +16,14 @@
         </trust-anchors>
     </domain-config>
 
+    <!-- Render Production Server -->
+    <domain-config>
+        <domain includeSubdomains="true">amplify-shop-backend.onrender.com</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user"/>
+            <certificates src="@raw/cert"/>
+        </trust-anchors>
+    </domain-config>
+
 </network-security-config>
