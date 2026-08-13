@@ -19,7 +19,7 @@ import com.abhi.amplify_store.presentation.utils.navigation.AppNavGraph
 import com.abhi.amplify_store.presentation.utils.network_handler.NetworkStateHandler
 import com.abhi.amplify_store.presentation.utils.network_handler.NetworkStateListener
 import com.abhi.amplify_store.services.regular.MyService
-import com.abhi.amplify_store.ui.theme.TrackInfoTheme
+import com.abhi.amplify_store.ui.theme.AmplifyStoreTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,7 +59,7 @@ fun MainApp() {
     val rootNavController = rememberNavController()
     val snackBarHostState = remember { SnackbarHostState() }
 
-    TrackInfoTheme(
+    AmplifyStoreTheme(
         darkTheme = isSystemInDarkTheme(),
         dynamicColor = false
     ) {

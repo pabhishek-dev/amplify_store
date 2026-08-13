@@ -44,7 +44,7 @@ object UiConstants {
         fontFamily = ubuntuFont
     )
 
-    const val LOGS = "TRACKINFO_LOGS"
+    const val LOGS = "AMPLIFYSTORE_LOGS"
 
     @Composable
     fun isPreview(): Boolean = LocalInspectionMode.current

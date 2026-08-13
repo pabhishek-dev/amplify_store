@@ -12,4 +12,4 @@ object Url {
     const val FETCH_DATA = "https://jsonplaceholder.typicode.com/posts/1"
 }
 
-const val LOGS = "TRACKINFO_LOGS"
+const val LOGS = "AMPLIFYSTORE_LOGS"
