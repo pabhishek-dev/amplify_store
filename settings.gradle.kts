@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TrackInfo"
+rootProject.name = "AmplifyStore"
 include(":app")

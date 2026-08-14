@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    namespace = "com.abhi.trackinfo"
+    namespace = "com.abhi.amplify_store"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.abhi.trackinfo"
+        applicationId = "com.abhi.amplify_store"
         minSdk = 25
         targetSdk = 37
         versionCode = 1
