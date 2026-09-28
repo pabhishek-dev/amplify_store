@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333078037996",
+    "project_id": "amplify-store-eb629",
+    "storage_bucket": "amplify-store-eb629.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333078037996:android:0b6580f54c67895b436cc9",
+        "android_client_info": {
+          "package_name": "com.abhi.amplify_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEnW8Q6rEAdpjCQ0C2UF_LY0cA57r2T9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

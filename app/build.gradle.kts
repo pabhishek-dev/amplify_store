@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -57,6 +58,8 @@ dependencies {
 
     //Foundational Android/Kotlin extensions and lifecycle-aware components.
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
@@ -75,6 +78,8 @@ dependencies {
 
     //Navigation In-app screen navigation for Compose.
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.firebase.auth)
+    implementation(libs.googleid)
 
     //Dependency Injection (Hilt) Compile-time DI container and Compose/Navigation integration.
     implementation(libs.hilt.android)

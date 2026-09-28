@@ -13,7 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.abhi.amplify_store.presentation.authentication.Authentication
+import com.abhi.amplify_store.presentation.authentication.login.LoginScreen
+import com.abhi.amplify_store.presentation.authentication.register.RegisterScreen
 import com.abhi.amplify_store.presentation.favourites.FavouriteScreen
 import com.abhi.amplify_store.presentation.home.Home
 import com.abhi.amplify_store.presentation.product_details.ProductDetails
@@ -29,6 +30,8 @@ sealed interface Route {
     @Serializable
     data object Login : Route
 
+    @Serializable
+    data object Register :Route
     @Serializable
     data object MainGraph : Route
     @Serializable
@@ -84,10 +87,7 @@ private fun NavGraphBuilder.authGraph(
 ) {
     navigation<Route.AuthGraph>(startDestination = Route.Login) {
         composable<Route.Login> {
-            Authentication(
-                snackBarHostState = snackBarHostState,
-                onAuthSuccess = onAuthSuccess
-            )
+
         }
     }
 }
@@ -97,7 +97,7 @@ private fun NavGraphBuilder.mainGraph(
     navController: NavController,
     modifier: Modifier
 ) {
-    navigation<Route.MainGraph>(startDestination = Route.Home) {
+    navigation<Route.MainGraph>(startDestination = Route.Login) {
         composable<Route.Home> {
             Home(
                 modifier = modifier,
@@ -108,6 +108,33 @@ private fun NavGraphBuilder.mainGraph(
         composable<Route.Profile>   { ProfileScreen(onNavClick = navController::popBackStack) }
         composable<Route.Settings>  { SettingsScreen(navController = navController) }
         composable<Route.Favourites>{ FavouriteScreen(navController = navController) }
+        composable<Route.Login> {
+            LoginScreen(
+                snackBarHostState = snackBarHostState,
+                onLoginSuccess = {
+                    navController.navigate(Route.Home) {
+                        popUpTo(Route.Login) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
+                onRegisterClick = {
+                    navController.navigate(Route.Register) {
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+        composable<Route.Register> {
+            RegisterScreen(
+                snackBarHostState = snackBarHostState,
+                navigateToLogin = {
+                    navController.navigate(Route.Login) {
+                        popUpTo(Route.Register) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
         composable<Route.Test>      { Test() }
         composable<Route.ProductDetails> { entry ->
             val args = entry.toRoute<Route.ProductDetails>()

@@ -19,7 +19,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.abhi.amplify_store.presentation.utils.components.main.MI_BottomBar
 import com.abhi.amplify_store.presentation.utils.components.main.MI_FAB
 import com.abhi.amplify_store.presentation.utils.components.main.MI_TopBar
@@ -29,7 +28,7 @@ import com.abhi.amplify_store.presentation.utils.navigation.Route
 @Composable
 fun Home(
     modifier: Modifier,
-    navController: NavController = rememberNavController(),
+    navController: NavController,
     snackBarHostState: SnackbarHostState,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -42,12 +41,19 @@ fun Home(
     // UI State
     val homeUiState by viewModel.products.collectAsStateWithLifecycle()
 
+    val onProductClick = remember(navController) { {
+        productId: String -> navController.navigate(Route.ProductDetails(productId = productId))
+        } }
+
+    val onFavouriteClick = remember(viewModel) { {
+            id: Int -> viewModel.toggleFavourite(id)
+        } }
+
     Scaffold(
         modifier = modifier
             .nestedScroll(scrollBehaviour.nestedScrollConnection),
         topBar = {
             MI_TopBar(
-                context = context,
                 scrollBehaviour = scrollBehaviour
             )
         },
@@ -70,12 +76,8 @@ fun Home(
         HomeScreen(
             modifier = Modifier.padding(innerPadding),
             homeUiState = homeUiState,
-            onProductClick = { productId ->
-                navController.navigate(Route.ProductDetails(productId = productId))
-            },
-            onFavouriteClick = { id ->
-                viewModel.toggleFavourite(id)
-            }
+            onProductClick = onProductClick,
+            onFavouriteClick = onFavouriteClick
         )
     }
 }
