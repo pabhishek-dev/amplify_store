@@ -1,13 +1,12 @@
 package com.abhi.amplify_store.data.util.mapper
 
-import com.abhi.amplify_store.data.model.LoginResponse
-import com.abhi.amplify_store.domain.model.User
+import com.abhi.amplify_store.data.model.LoginResponseDto
+import com.abhi.amplify_store.domain.model.LoginResponse
 
-fun LoginResponse.toDomain(): User {
+fun LoginResponseDto.toDomain(): LoginResponse {
 
-    return User(
-        id = id,
-        email = email,
-        password = password
+    return LoginResponse(
+        accessToken = accessToken,
+        tokenType = tokenType
     )
 }

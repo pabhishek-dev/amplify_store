@@ -23,7 +23,6 @@ class SimpleActivity : ComponentActivity() {
             delay(5000.milliseconds)
         }
 
-
         lifecycleScope.launch {
             storage.userNameFlow.collect { name ->
                 Timber.d("Current username is: $name")

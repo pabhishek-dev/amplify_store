@@ -1,9 +1,10 @@
 package com.abhi.amplify_store.di
 
-import com.abhi.amplify_store.domain.repository.AuthRepository
 import com.abhi.amplify_store.domain.repository.FavouritesRepository
 import com.abhi.amplify_store.domain.repository.HomeRepository
+import com.abhi.amplify_store.domain.repository.LoginRepository
 import com.abhi.amplify_store.domain.repository.ProductDetailsRepository
+import com.abhi.amplify_store.domain.repository.RegisterRepository
 import com.abhi.amplify_store.domain.repository.SSLPinningRepository
 import com.abhi.amplify_store.domain.usecase.FavouriteUseCase
 import com.abhi.amplify_store.domain.usecase.HomeUseCase
@@ -24,14 +25,14 @@ object UseCaseModule {
 
     @Provides
     fun provideLoginUseCase(
-        repository: AuthRepository,
+        repository: LoginRepository,
         emailValidator: EmailValidator,
         passwordValidator: PasswordValidator
     ): LoginUseCase = LoginUseCase(repository, emailValidator, passwordValidator)
 
     @Provides
     fun provideRegisterUseCase(
-        repository: AuthRepository,
+        repository: RegisterRepository,
         emailValidator: EmailValidator,
         passwordValidator: PasswordValidator
     ): RegisterUseCase = RegisterUseCase(repository, emailValidator, passwordValidator)

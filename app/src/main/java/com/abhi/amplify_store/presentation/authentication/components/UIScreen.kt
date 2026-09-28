@@ -3,6 +3,7 @@ package com.abhi.amplify_store.presentation.authentication.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,21 +34,24 @@ import com.abhi.amplify_store.presentation.utils.components.shared.MI_TitleText
 
 @Composable
 fun UIScreen(
+    title: String,
     email: String,
     onEmailChange: (String) -> Unit,
     password: String,
     onPasswordChange: (String) -> Unit,
-    onSignIn: (String, String) -> Unit = { _, _ -> },
-    onSignUp: (String, String) -> Unit = { _, _ -> },
+    onSignIn: () -> Unit,
+    onSignUp: () -> Unit,
     agreement: Boolean,
     onAgreementChanged: (Boolean) -> Unit,
-    rememberMe: Boolean,
-    onRememberChange: (Boolean) -> Unit
+    rememberMe: Boolean = false,
+    onRememberChange: (Boolean) -> Unit = {},
+    padding: PaddingValues
 ) {
 
     Box(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(padding),
         contentAlignment = Alignment.Center
     ) {
         Card(
@@ -73,7 +77,7 @@ fun UIScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 MI_TitleText(
-                    titleValue = "Login"
+                    titleValue = title
                 )
 
                 Spacer(Modifier.height(20.dp))
@@ -89,7 +93,7 @@ fun UIScreen(
 
                 MI_InputText(
                     inputValue = password,
-                    onValueChanged = { onPasswordChange(it) },
+                    onValueChanged = { onPasswordChange(it.trim()) },
                     label = "password",
                     placeHolder = "enter valid password",
                     isPassword = true
@@ -98,9 +102,7 @@ fun UIScreen(
                 Spacer(Modifier.height(20.dp))
 
 
-                Row(
-
-                ) {
+                Row {
 
                     MI_CheckBox(
                         checkValue = agreement,
@@ -126,7 +128,7 @@ fun UIScreen(
                     MI_Button(
                         text = "Sign In",
                         onClick = {
-                            onSignIn(email, password)
+                            onSignIn()
                         }
                     )
 
@@ -135,7 +137,7 @@ fun UIScreen(
                     MI_Button(
                         text = "Sign Up",
                         onClick = {
-                            onSignUp(email, password)
+                            onSignUp()
                         }
                     )
 
@@ -149,6 +151,7 @@ fun UIScreen(
 @Composable
 fun UIScreenPreview() {
     UIScreen(
+        title = "Login",
         email = "abc@gmail.com",
         onEmailChange = {},
         password = "abhishek",
@@ -156,6 +159,9 @@ fun UIScreenPreview() {
         agreement = true,
         onAgreementChanged = {},
         rememberMe = true,
-        onRememberChange = {}
+        onRememberChange = {},
+        onSignIn = {},
+        onSignUp = {},
+        padding = PaddingValues(1.dp)
     )
 }

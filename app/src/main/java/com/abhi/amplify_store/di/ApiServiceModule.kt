@@ -1,6 +1,8 @@
 package com.abhi.amplify_store.di
 
 import com.abhi.amplify_store.data.remote.HomeApiService
+import com.abhi.amplify_store.data.remote.LoginApiService
+import com.abhi.amplify_store.data.remote.RegisterApiService
 import com.abhi.amplify_store.data.remote.SSLApiService
 import dagger.Module
 import dagger.Provides
@@ -24,4 +26,16 @@ object ApiServiceModule {
     fun provideHomeAPIService(
         retrofit: Retrofit
     ): HomeApiService = retrofit.create(HomeApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideLoginAPIService(
+        retrofit: Retrofit
+    ): LoginApiService = retrofit.create(LoginApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRegisterApiService(
+        retrofit: Retrofit
+    ): RegisterApiService = retrofit.create(RegisterApiService::class.java)
 }

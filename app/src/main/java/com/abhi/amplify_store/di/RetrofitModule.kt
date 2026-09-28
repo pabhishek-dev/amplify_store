@@ -26,7 +26,7 @@ object RetrofitModule {
     @Singleton
     fun provideCertificatePinner(): CertificatePinner =
         CertificatePinner.Builder()
-            .add(API_HOST, "sha256/fizfE9JVlzlRplEx7epXfqW9enrbLvwF/LU26XTPEG4=")
+            .add(API_HOST, "sha256/8emdl/UmneUm0I4Y/vHzOTQzb9eJwG4voRHtMdNmBPk=")
             .build()
 
     @Provides

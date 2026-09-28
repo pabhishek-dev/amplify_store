@@ -1,6 +1,6 @@
 package com.abhi.amplify_store.data.model
 
-data class LoginRequest (
+data class LoginRequestDto (
     val email: String,
     val password: String
 )
