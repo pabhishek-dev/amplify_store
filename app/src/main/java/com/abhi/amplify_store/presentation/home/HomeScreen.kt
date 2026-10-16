@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.presentation.home.components.ProductViewCard
 
 @Composable
@@ -23,7 +24,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     homeUiState: HomeUiState,
     onProductClick: (String) -> Unit = {},
-    onFavouriteClick: (Int) -> Unit = {}
+    onFavouriteClick: (Product) -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -53,7 +54,7 @@ fun HomeScreen(
                             product = product,
                             isFavourite = homeUiState.favouriteProductIds.contains(product.id),
                             click = { getId -> onProductClick(getId.toString()) },
-                            onFav = { id -> onFavouriteClick(id) }
+                            onFav = { onFavouriteClick(product) }
                         )
                     }
                 }

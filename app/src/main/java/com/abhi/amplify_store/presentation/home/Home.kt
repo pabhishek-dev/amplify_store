@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.presentation.utils.components.main.MI_BottomBar
 import com.abhi.amplify_store.presentation.utils.components.main.MI_FAB
 import com.abhi.amplify_store.presentation.utils.components.main.MI_TopBar
@@ -46,7 +47,7 @@ fun Home(
         } }
 
     val onFavouriteClick = remember(viewModel) { {
-            id: Int -> viewModel.toggleFavourite(id)
+            product: Product -> viewModel.toggleFavourite(product)
         } }
 
     Scaffold(

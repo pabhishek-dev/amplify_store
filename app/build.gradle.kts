@@ -120,6 +120,9 @@ dependencies {
     //Play HLS STREAMS
     implementation(libs.androidx.media3.exoplayer.hls)
 
+    //Modules
+    implementation(project(":analytics"))
+
     //Unit Testing (JVM) JUnit 4/5 engines, launcher, and coroutine test utilities for local tests.
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
