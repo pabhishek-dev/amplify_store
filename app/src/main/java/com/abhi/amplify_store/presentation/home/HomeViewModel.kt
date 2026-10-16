@@ -2,9 +2,13 @@ package com.abhi.amplify_store.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.domain.usecase.FavouriteUseCase
 import com.abhi.amplify_store.domain.usecase.HomeUseCase
 import com.abhi.amplify_store.domain.usecase.util.Result
+import com.abhi.amplify_store_core.analytics.api.AnalyticsEvent
+import com.abhi.amplify_store_core.analytics.api.AnalyticsTracker
+import com.abhi.amplify_store_core.analytics.api.ProductViewedEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val homeUseCase: HomeUseCase,
-    private val favouriteUseCase: FavouriteUseCase
+    private val favouriteUseCase: FavouriteUseCase,
+    private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
     // Here we have combined 2 flows to extract favourite id's and toggle them in list.
@@ -61,13 +66,27 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun toggleFavourite(productId: Int) {
+    fun toggleFavourite(product: Product) {
         viewModelScope.launch {
-            val isFavourite = products.value.favouriteProductIds.contains(productId)
+            val isFavourite = products.value.favouriteProductIds.contains(product.id)
             if (isFavourite) {
-                favouriteUseCase.removeFavourites(productId)
+                analyticsTracker.logEvent(
+                    ProductViewedEvent(
+                        productId = product.id,
+                        productName = product.name,
+                        category = product.category
+                    )
+                )
+                favouriteUseCase.removeFavourites(product.id)
             } else {
-                favouriteUseCase.addFavourite(productId)
+                analyticsTracker.logEvent(
+                    ProductViewedEvent(
+                        productId = product.id,
+                        productName = product.name,
+                        category = product.category
+                    )
+                )
+                favouriteUseCase.addFavourite(product.id)
             }
         }
     }
