@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.abhi.amplify_store.data.local.AppDatabase
 import com.abhi.amplify_store.data.local.dao.ProductDao
 import com.abhi.amplify_store.data.local.dao.UserDao
-import com.abhi.amplify_store.data.util.DatabaseConstants.DB_NAME
+import com.abhi.network.Constants.DB_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

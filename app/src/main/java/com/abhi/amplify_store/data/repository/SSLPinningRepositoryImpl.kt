@@ -1,7 +1,7 @@
 package com.abhi.amplify_store.data.repository
 
-import com.abhi.amplify_store.data.remote.SSLApiService
 import com.abhi.amplify_store.domain.repository.SSLPinningRepository
+import com.abhi.network.api.SSLApiService
 import javax.net.ssl.SSLPeerUnverifiedException
 
 class SSLPinningRepositoryImpl(

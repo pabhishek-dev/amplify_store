@@ -3,7 +3,6 @@ package com.abhi.amplify_store.presentation.authentication.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abhi.amplify_store.domain.usecase.RegisterUseCase
-import com.abhi.amplify_store.domain.usecase.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,6 +11,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.abhi.common.Result
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(

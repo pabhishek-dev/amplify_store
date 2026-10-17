@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.abhi.amplify_store.domain.usecase.util.Result
 import com.abhi.amplify_store.presentation.utils.components.shared.MI_TopHeader
+import com.abhi.common.Result
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,10 +74,12 @@ fun ProductDetails(
                         .padding(innerPadding),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = state.message,
-                        color = Color.Red
-                    )
+                    state.message?.let {
+                        Text(
+                            text = it,
+                            color = Color.Red
+                        )
+                    }
                 }
             }
         }

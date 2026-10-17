@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.domain.usecase.ProductDetailsUseCase
-import com.abhi.amplify_store.domain.usecase.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.abhi.common.Result
 
 @HiltViewModel
 class ProductViewModel @Inject constructor(

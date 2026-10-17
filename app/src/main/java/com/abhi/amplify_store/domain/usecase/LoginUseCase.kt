@@ -6,7 +6,7 @@ import com.abhi.amplify_store.domain.usecase.util.EmailValidator
 import com.abhi.amplify_store.domain.usecase.util.PasswordValidator
 import com.abhi.amplify_store.domain.usecase.util.ValidationMessages.EMAIL_VALIDATION_MSG
 import com.abhi.amplify_store.domain.usecase.util.ValidationMessages.PASSWORD_VALIDATION_MSG
-import com.abhi.amplify_store.domain.usecase.util.Result
+import com.abhi.common.Result
 
 class LoginUseCase(
     private val loginRepository: LoginRepository,

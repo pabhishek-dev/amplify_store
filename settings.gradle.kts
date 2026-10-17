@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "AmplifyStore"
 include(":app")
 include(":analytics")
+include(":network")
+include(":common")

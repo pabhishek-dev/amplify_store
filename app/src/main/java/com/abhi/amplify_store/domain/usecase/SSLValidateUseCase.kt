@@ -1,7 +1,7 @@
 package com.abhi.amplify_store.domain.usecase
 
 import com.abhi.amplify_store.domain.repository.SSLPinningRepository
-import com.abhi.amplify_store.domain.usecase.util.Result
+import com.abhi.common.Result
 
 class SSLValidateUseCase(
     private val sslPinningRepository: SSLPinningRepository
