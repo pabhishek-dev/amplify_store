@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.hilt.android) apply false
     alias(libs.plugins.google.gms.google.services) apply false
+    id("com.google.firebase.firebase-perf") version "2.0.2" apply false
 }

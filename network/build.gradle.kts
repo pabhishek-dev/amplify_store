@@ -47,6 +47,10 @@ dependencies {
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
 
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.perf)
+
     implementation(project(":common"))
 
     testImplementation(libs.junit)
