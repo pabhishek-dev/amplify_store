@@ -1,5 +1,6 @@
 package com.abhi.amplify_store.di
 
+import com.abhi.network.di.Qualifiers
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent

@@ -1,18 +1,22 @@
 package com.abhi.amplify_store.di
 
 import com.abhi.amplify_store.data.local.dao.ProductDao
-import com.abhi.amplify_store.data.remote.LoginApiService
-import com.abhi.amplify_store.data.remote.RegisterApiService
 import com.abhi.amplify_store.data.repository.FavouriteRepositoryImpl
 import com.abhi.amplify_store.data.repository.HomeRepositoryImpl
 import com.abhi.amplify_store.data.repository.LoginRepositoryImpl
 import com.abhi.amplify_store.data.repository.ProductDetailsRepositoryImpl
 import com.abhi.amplify_store.data.repository.RegisterRepositoryImpl
+import com.abhi.amplify_store.data.repository.SSLPinningRepositoryImpl
 import com.abhi.amplify_store.domain.repository.FavouritesRepository
 import com.abhi.amplify_store.domain.repository.HomeRepository
 import com.abhi.amplify_store.domain.repository.LoginRepository
 import com.abhi.amplify_store.domain.repository.ProductDetailsRepository
 import com.abhi.amplify_store.domain.repository.RegisterRepository
+import com.abhi.amplify_store.domain.repository.SSLPinningRepository
+import com.abhi.network.api.LoginApiService
+import com.abhi.network.api.RegisterApiService
+import com.abhi.network.api.SSLApiService
+import com.abhi.network.di.Qualifiers
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -75,4 +79,11 @@ object RepositoryModule {
     ): LoginRepository = LoginRepositoryImpl(
         loginApiService
     )
+
+
+    @Provides
+    @Singleton
+    fun provideSSLPinning(
+        sslApiService: SSLApiService
+    ): SSLPinningRepository = SSLPinningRepositoryImpl(sslApiService)
 }

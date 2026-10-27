@@ -2,10 +2,11 @@ package com.abhi.amplify_store.domain.usecase
 
 import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.domain.repository.HomeRepository
-import com.abhi.amplify_store.domain.usecase.util.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import com.abhi.common.Result
+
 
 class HomeUseCase(
     private val homeRepository: HomeRepository

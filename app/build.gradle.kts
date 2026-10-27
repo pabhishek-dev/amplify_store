@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.google.gms.google.services)
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -56,14 +57,14 @@ kotlin {
 
 dependencies {
 
-    //Foundational Android/Kotlin extensions and lifecycle-aware components.
+    // Foundational Android/Kotlin extensions and lifecycle-aware components.
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    //Jetpack Compose – UI Toolkit Declarative UI framework, Material design, typography, icons, and adaptive layouts.
+    // Jetpack Compose – UI Toolkit Declarative UI framework, Material design, typography, icons, and adaptive layouts.
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
@@ -76,54 +77,53 @@ dependencies {
     implementation(libs.androidx.compose.material3.window.size.class1)
     implementation(libs.androidx.lifecycle.process)
 
-    //Navigation In-app screen navigation for Compose.
+    // Navigation In-app screen navigation for Compose.
     implementation(libs.androidx.navigation.compose)
     implementation(libs.firebase.auth)
     implementation(libs.googleid)
 
-    //Dependency Injection (Hilt) Compile-time DI container and Compose/Navigation integration.
+    // Dependency Injection (Hilt) Compile-time DI container and Compose/Navigation integration.
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    //Local Persistence – Room SQLite ORM with Kotlin coroutines/Flow support.
+    // Local Persistence – Room SQLite ORM with Kotlin coroutines/Flow support.
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    //Local Persistence – DataStore Key-value preferences storage (modern replacement for SharedPreferences).
+    // Local Persistence – DataStore Key-value preferences storage (modern replacement for SharedPreferences).
     implementation(libs.androidx.datastore.preferences)
 
-    //Networking HTTP client, REST adapter, JSON conversion, and Server-Sent Events support.
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.sse)
-
-    //Serialization Kotlin-native JSON serialization/deserialization.
-    implementation(libs.kotlinx.serialization.json)
-
-    //Image Loading Async image loading with Compose bindings and network fetching.
+    // Image Loading Async image loading with Compose bindings and network fetching.
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
 
-    //Logging Timber
+    // Logging Timber
     implementation(libs.timber)
+
+    // Gson & OkHttp SSE
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp.sse)
 
     // WorkManager Kotlin + Coroutines support
     implementation(libs.androidx.work.runtime.ktx)
 
-    //ExoPlayer
+    // ExoPlayer
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)
     implementation(libs.androidx.media3.ui.compose)
-    //Play HLS STREAMS
+
+    // Play HLS STREAMS
     implementation(libs.androidx.media3.exoplayer.hls)
 
-    //Modules
+    // Modules
     implementation(project(":analytics"))
+    implementation(project(":network"))
+    implementation(project(":common"))
 
-    //Unit Testing (JVM) JUnit 4/5 engines, launcher, and coroutine test utilities for local tests.
+
+    // Unit Testing (JVM) JUnit 4/5 engines, launcher, and coroutine test utilities for local tests.
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.jupiter.api)
@@ -131,13 +131,13 @@ dependencies {
     testRuntimeOnly(libs.junit.platform.launcher)
     testImplementation(libs.kotlinx.coroutines.test)
 
-    //Instrumentation / UI Testing (Device) On-device tests including Espresso and Compose UI test harness.
+    // Instrumentation / UI Testing (Device) On-device tests including Espresso and Compose UI test harness.
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
-    //Debug-Only Tooling Compose preview/inspector and test manifest, included only in debug builds.
+    // Debug-Only Tooling Compose preview/inspector and test manifest, included only in debug builds.
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 

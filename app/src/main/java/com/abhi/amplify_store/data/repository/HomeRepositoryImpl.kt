@@ -2,13 +2,13 @@ package com.abhi.amplify_store.data.repository
 
 import com.abhi.amplify_store.data.local.dao.ProductDao
 import com.abhi.amplify_store.data.local.entities.toDomainProduct
-import com.abhi.amplify_store.data.model.SSEEvent
-import com.abhi.amplify_store.data.model.toDomainProduct
-import com.abhi.amplify_store.data.util.LOGS
+import com.abhi.amplify_store.data.util.mapper.toDomainProduct
+import com.abhi.network.LOGS
 import com.abhi.amplify_store.data.util.mapper.toEntity
-import com.abhi.amplify_store.di.Qualifiers
+import com.abhi.network.di.Qualifiers
 import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.domain.repository.HomeRepository
+import com.abhi.network.model.SSEEvent
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.channels.awaitClose

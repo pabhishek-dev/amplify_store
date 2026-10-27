@@ -3,7 +3,6 @@ package com.abhi.amplify_store.presentation.favourites
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abhi.amplify_store.domain.usecase.FavouriteUseCase
-import com.abhi.amplify_store.domain.usecase.util.Result
 import com.abhi.amplify_store.presentation.home.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +12,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.abhi.common.Result
 
 @HiltViewModel
 class FavouriteViewModel @Inject constructor(

@@ -38,7 +38,7 @@ fun LoginScreen(
                     onLoginSuccess()
                 }
                 is LoginUiEffect.ShowSnackBar -> {
-                    snackBarHostState.showSnackbar(effect.message)
+                    effect.message?.let { snackBarHostState.showSnackbar(it) }
                 }
                 is LoginUiEffect.NavigateToRegister -> Unit
                 is LoginUiEffect.NavigateToForgotPassword -> Unit

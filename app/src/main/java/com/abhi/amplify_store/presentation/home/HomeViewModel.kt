@@ -5,8 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.abhi.amplify_store.domain.model.Product
 import com.abhi.amplify_store.domain.usecase.FavouriteUseCase
 import com.abhi.amplify_store.domain.usecase.HomeUseCase
-import com.abhi.amplify_store.domain.usecase.util.Result
-import com.abhi.amplify_store_core.analytics.api.AnalyticsEvent
 import com.abhi.amplify_store_core.analytics.api.AnalyticsTracker
 import com.abhi.amplify_store_core.analytics.api.ProductViewedEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +16,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import com.abhi.common.Result
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
